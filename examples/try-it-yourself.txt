@@ -1,0 +1,50 @@
+=============================================================================================
+=============================================================================================
+=============================================================================================
+1. Enhanced Calculator
+Modify the calculator program to also display the result of integer division (~/) and
+modulo (%). Make sure it handles the division by zero case for all three division operations.
+=============================================================================================
+=============================================================================================
+=============================================================================================
+2. Temperature Converter
+Write a program that reads a temperature in Celsius from the user and prints the
+equivalent in Fahrenheit. The formula is F = (C × 9/5) + 32. Use tryParse() to handle
+invalid input gracefully.
+=============================================================================================
+=============================================================================================
+=============================================================================================
+3. Null Safety Practice
+Write a program that asks the user for two inputs: their name and their age. Handle the
+case where the user provides no name (use ?? to provide a default of “Anonymous”) and
+the case where the age isn’t a valid number (use tryParse() and print an appropriate
+message). If both inputs are valid, print a greeting using string interpolation: “Hello,
+[name]! You will be [age + 1] next year.”
+=============================================================================================
+=============================================================================================
+=============================================================================================
+Grade Calculator
+Write a program that asks for a student’s score and prints: “Excellent!” for 90 or above,
+“Good job!” for 80–89, “Fair effort” for 70–79, “You passed” for 60–69, and “You need
+to work harder” for below 60. Additionally, if the score is above 100 or below 0, print
+“Invalid score.” Use tryParse() to handle non-numeric input gracefully, and wrap the
+whole thing in a loop so the user can check multiple scores without restarting.
+=============================================================================================
+=============================================================================================
+=============================================================================================
+Vowel Counter
+Write a program that takes a word from the user and counts how many vowels it contains
+(a, e, i, o, and u). Use a for loop to iterate through each character, and use continue to
+skip consonants. Print the total count at the end. Hint: convert the input to lowercase
+first with .toLowerCase() to handle both cases.
+=============================================================================================
+=============================================================================================
+=============================================================================================
+Enhanced Guessing Game
+Modify the guessing game to limit the player to seven attempts. After each wrong guess,
+tell them how many attempts remain. If they run out, reveal the answer and ask if they’d
+like to play again. Hint: you can use either a counter with a while loop or replace the
+while loop with a for loop and break.
+=============================================================================================
+=============================================================================================
+=============================================================================================

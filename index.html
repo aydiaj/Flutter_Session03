@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
+  <meta content="#10283e" name="theme-color" />
+  <meta content="Interactive Dart fundamentals Codelab for SICT235 TVET Level 2 trainees" name="description" />
+  <link href="images/favicon.svg" rel="icon" type="image/svg+xml" />
+  <title>Codelab 03 · Dart Programming Fundamentals | SICT235</title>
+  <link href="css/style.css?v=session03-nullsafe-v1" rel="stylesheet" />
+  <link href="css/session03-additions.css?v=nullsafe-v1" rel="stylesheet" />
+  <script defer="" src="js/gists.js"></script>
+  <script defer="" src="js/app.js?v=session03-nullsafe-v1"></script>
+  <script defer="" src="js/interactive-labs.js?v=nullsafe-v1"></script>
+</head>
+
+<body><a class="skip-link" href="#content">Skip to lesson</a>
+  <div class="app-shell">
+    <div class="mobile-scrim" hidden="" id="scrim"></div>
+    <aside aria-label="Codelab navigation" class="sidebar" id="sidebar">
+      <div class="brand">
+        <div aria-hidden="true" class="brand-icon"><svg height="27" viewbox="0 0 32 32" width="27">
+            <path d="M17 3H28L9 22H1L17 3ZM13 24l8-8h-8l-4 4 4 4Zm3 3h11l-6-6-5 6Z" fill="currentColor"></path>
+          </svg></div>
+        <div><span class="brand-label">TVET CODELAB STUDIO</span><strong>Mobile Apps · PDB2</strong></div><button
+          aria-label="Close navigation" class="icon-button sidebar-close" id="sidebarClose" type="button">✕</button>
+      </div>
+      <div class="sidebar-course"><span class="course-code">SICT235 · 2026–2027</span>
+        <h2>Dart Programming<br />Fundamentals</h2>
+        <p>03 / Dart syntax · Null Safety · Applications</p>
+        <div class="progress-summary"><span>Your progress</span><strong id="progressLabel">0 of 10</strong></div>
+        <div aria-label="Session completion" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0"
+          class="progress-track" id="progressbar" role="progressbar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+      <nav aria-label="Learning sections">
+        <ol class="step-nav" id="stepList">
+          <li><button class="step-link" data-step="0" type="button"><span class="step-number">01</span><span
+                class="step-nav-text">Prior-knowledge check<small>8 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="1" type="button"><span class="step-number">02</span><span
+                class="step-nav-text">main() · Hello Dart<small>6 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="2" type="button"><span class="step-number">03</span><span
+                class="step-nav-text">Types, objects &amp; variables<small>14 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="3" type="button"><span class="step-number">04</span><span
+                class="step-nav-text">Expressions &amp; conversion<small>10 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="4" type="button"><span class="step-number">05</span><span
+                class="step-nav-text">Null safety &amp; simulation<small>23 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="5" type="button"><span class="step-number">06</span><span
+                class="step-nav-text">Comparisons &amp; precedence<small>9 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="6" type="button"><span class="step-number">07</span><span
+                class="step-nav-text">if, switch &amp; ternary<small>13 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="7" type="button"><span class="step-number">08</span><span
+                class="step-nav-text">for, while &amp; loop control<small>13 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="8" type="button"><span class="step-number">09</span><span
+                class="step-nav-text">Applications: calculator &amp; game<small>18 min</small></span><span
+                aria-hidden="true" class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="9" type="button"><span class="step-number">10</span><span
+                class="step-nav-text">Book practice &amp; assignment<small>6 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+        </ol>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span>Progress saved on this device<button
+          class="reset-link" id="resetProgress" type="button">Reset progress</button></div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar"><button aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation"
+          class="icon-button menu-toggle" id="menuToggle" type="button">☰</button>
+        <div class="breadcrumbs">SICT235 <span>/</span> Flutter Codelabs <span>/</span> <b>Session 03</b></div>
+        <div class="top-actions"><span class="time-chip">◷ 120 min</span><button aria-label="Toggle light or dark mode"
+            class="icon-button" id="themeToggle" title="Toggle light/dark" type="button"><span
+              id="themeIcon">◐</span></button></div>
+      </header>
+      <main class="main-content" id="content" tabindex="-1">
+        <section class="lesson-step" data-step="0" id="section-1">
+          <div class="hero">
+            <div class="hero-copy"><span class="eyebrow">SESSION 03 · GUIDED PRACTICAL LAB</span>
+              <h1>Learn Dart.<br /><em>Code with confidence.</em></h1>
+              <p>Understand. Predict. Code. Run. Improve.</p>
+              <div class="hero-tags"><span>VS Code</span><span>Dart</span><span>Flutter</span><span>Chrome / Edge</span>
+              </div>
+            </div>
+          </div>
+          <div class="intro-line">
+            <div><span class="overline">START HERE</span>
+              <h2>Refresh the logic before writing Dart</h2>
+            </div><span class="duration">08 MIN</span>
+          </div>
+          <p class="lead intro-instructions"><strong>Today's method:</strong> Explain → predict → run → change. We
+            already know fundamental programming concepts; today we refresh them using Dart's syntax. Use the on-demand
+            DartPad editors, or VS Code with a local Dart SDK. <strong>New today:</strong> how Dart prevents
+            null-reference errors and handles missing input.</p>
+          <div class="learning-grid">
+            <div class="learning-card"><span class="kicker">PRIOR KNOWLEDGE</span>
+              <h3>Same programming ideas</h3>
+              <p>Variables, data types, expressions, choices, loops and reusable logic: you already know the concepts.
+                We will focus on how Dart expresses them.</p>
+            </div>
+            <div class="learning-card"><span class="kicker">TODAY · 120 MINUTES</span>
+              <h3>From first line to useful logic</h3>
+              <p>Entry point → Types → Conversion → Null Safety → Decisions → Loops → Applications. Predict, run, and
+                explain the code.</p>
+            </div>
+          </div>
+          <div class="warmup-banner"><span aria-hidden="true" class="warmup-icon">✦</span>
+            <div><strong>Before we write Dart…</strong>
+              <p>Think like a programmer. The syntax can change; the reasoning stays.</p>
+            </div>
+            <div aria-label="Recall, predict, explain" class="warmup-flow">
+              <span>Recall</span><span>Predict</span><span>Explain</span>
+            </div>
+          </div>
+          <h2 class="session03-small-heading">Prior-knowledge check · 10 programming questions</h2>
+          <p class="lede">Before learning Dart syntax, recall the programming principles you already know. <strong>No
+              Dart-specific knowledge is needed.</strong> Choose one answer per question, then evaluate and review the
+            explanations. Ungraded.</p>
+          <form class="quiz-form" id="refresherQuiz">
+            <fieldset class="quiz-item">
+              <legend>1. A program normally starts executing at its…</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="true" name="refresherQuiz0"
+                    type="radio" value="0" /><span>entry point</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz0" type="radio" value="1" /><span>last
+                    comment</span></label><label class="quiz-choice"><input data-right="false" name="refresherQuiz0"
+                    type="radio" value="2" /><span>largest variable</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">Execution begins at the designated entry point. Other procedures run when they are
+                called.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>2. What is the purpose of a variable?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz1"
+                    type="radio" value="0" /><span>To draw a user interface automatically</span></label><label
+                  class="quiz-choice"><input data-right="true" name="refresherQuiz1" type="radio" value="1" /><span>To
+                    give a value a name so it can be used in a program</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz1" type="radio" value="2" /><span>To stop a
+                    loop</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">A
+                variable associates a name with a value; its type and rules depend on the language.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>3. What is the difference between the number 12 and the text "12"?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz2"
+                    type="radio" value="0" /><span>Text is always larger than a number</span></label><label
+                  class="quiz-choice"><input data-right="false" name="refresherQuiz2" type="radio"
+                    value="1" /><span>Both must be stored identically</span></label><label class="quiz-choice"><input
+                    data-right="true" name="refresherQuiz2" type="radio" value="2" /><span>They represent different
+                    kinds of data</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">12
+                is numeric; "12" is a sequence of characters. Converting between them is sometimes necessary.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>4. Following the usual arithmetic precedence rules, what is 2 + 3 × 4?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz3"
+                    type="radio" value="0" /><span>20</span></label><label class="quiz-choice"><input data-right="true"
+                    name="refresherQuiz3" type="radio" value="1" /><span>14</span></label><label
+                  class="quiz-choice"><input data-right="false" name="refresherQuiz3" type="radio"
+                    value="2" /><span>24</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">Multiplication is evaluated before addition: 2 + (3 × 4) = 14.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>5. What is the result of the Boolean expression TRUE AND FALSE?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="true" name="refresherQuiz4"
+                    type="radio" value="0" /><span>FALSE</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz4" type="radio" value="1" /><span>TRUE</span></label><label
+                  class="quiz-choice"><input data-right="false" name="refresherQuiz4" type="radio" value="2" /><span>It
+                    has no value</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">AND requires both conditions to be true. One false condition makes the result false.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>6. What does a selection (decision) statement allow a program to do?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz5"
+                    type="radio" value="0" /><span>Run every branch at once</span></label><label
+                  class="quiz-choice"><input data-right="false" name="refresherQuiz5" type="radio"
+                    value="1" /><span>Store an unlimited amount of data</span></label><label class="quiz-choice"><input
+                    data-right="true" name="refresherQuiz5" type="radio" value="2" /><span>Choose a path depending on a
+                    condition</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">A
+                decision chooses which block to execute based on a condition.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>7. In an IF / ELSE IF / ELSE decision chain, which branch runs?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz6"
+                    type="radio" value="0" /><span>The last branch in all cases</span></label><label
+                  class="quiz-choice"><input data-right="true" name="refresherQuiz6" type="radio" value="1" /><span>The
+                    first branch whose condition is true</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz6" type="radio" value="2" /><span>Every branch whose condition
+                    is true</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">Conditions are checked in order; the first matching branch runs and the remaining alternatives
+                are skipped.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>8. When you already know exactly how many repetitions are needed, which is usually clearest?
+              </legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="true" name="refresherQuiz7"
+                    type="radio" value="0" /><span>A for loop</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz7" type="radio" value="1" /><span>An unconditional
+                    stop</span></label><label class="quiz-choice"><input data-right="false" name="refresherQuiz7"
+                    type="radio" value="2" /><span>A while loop</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">A
+                counted (for) loop makes initialization, repetition and updates easy to trace.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>9. If a WHILE loop’s condition is false before its first iteration, its body runs…</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz8"
+                    type="radio" value="0" /><span>once</span></label><label class="quiz-choice"><input
+                    data-right="false" name="refresherQuiz8" type="radio" value="1" /><span>until the computer shuts
+                    down</span></label><label class="quiz-choice"><input data-right="true" name="refresherQuiz8"
+                    type="radio" value="2" /><span>zero times</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">A
+                pre-test loop checks the condition before running its body, so it may run zero times.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>10. Why do programmers split repeated work into functions or procedures?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="refresherQuiz9"
+                    type="radio" value="0" /><span>To make every program longer</span></label><label
+                  class="quiz-choice"><input data-right="true" name="refresherQuiz9" type="radio" value="1" /><span>To
+                    organize and reuse behavior</span></label><label class="quiz-choice"><input data-right="false"
+                    name="refresherQuiz9" type="radio" value="2" /><span>To guarantee that code has no
+                    errors</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">Functions and procedures package behavior so it can be reused, tested and understood more
+                easily.</span>
+            </fieldset>
+          </form>
+          <div class="session03-book-note"><strong>Learning reference:</strong> Dart B, Chapters 2–3. This opening quiz
+            checks <em>general programming foundations</em>; the Dart-specific learning begins in Section 02.</div>
+        </section>
+        <section class="lesson-step" data-step="1" hidden="" id="section-2">
+          <div class="section-top"><span class="overline">STEP 02 · PROGRAM ENTRY POINT</span><span class="duration">06
+              MIN</span></div>
+          <h1 class="section-heading">Start here: main()</h1>
+          <p class="lede">Like many C-style languages, a Dart console application begins execution at
+            <code>main()</code>. Find the entry point, then run our original Hello Dart example.
+          </p>
+          <div class="diagram-variables">
+            <div class="diagram-box"><strong>main()</strong><small>Program entry point</small></div><span
+              class="diagram-arrow">→</span>
+            <div class="diagram-box"><strong>print(...)</strong><small>Run a statement</small></div><span
+              class="diagram-arrow">→</span>
+            <div class="diagram-box"><strong>Console</strong><small>Read output</small></div>
+          </div>
+          <p class="entry-caption"><strong>Trace it:</strong> Dart enters <code>main()</code>, executes the first
+            <code>print()</code>, then the next, and finishes when the function returns.
+          </p>
+          <div class="concept-card">
+            <h3>One entry point. One clear starting place.</h3>
+            <p><code>void main() { ... }</code> is the application’s entry point. Execution proceeds through its
+              statements in order; <code>print()</code> writes to the console. Braces <code>{ }</code> group statements;
+              <code>;</code> ends a statement.
+            </p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>01 · Hello, Dart!</h3>
+            <p>Read the code. Predict the number of printed lines. Run it, then add a personal goal.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Hello</span><button data-copy="hello" type="button">Copy
+                  code</button></div>
+              <pre class="code-sample"><code>void main() {
+  print('Welcome to Dart!');
+  print('I already know programming ideas.');
+  // TODO: Print your own learning goal.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Add a third <code>print</code> inside
+              <code>main()</code>.
+            </div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>Two lines appear before you change the code.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Each call to <code>print()</code> produces a new line.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="hello"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="hello" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="hello">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="session03-book-note"><strong>Learning reference:</strong> Flutter and Dart Fundamentals, Chapters
+            2–3. This opening quiz
+            checks <em>general programming foundations</em>; the Dart-specific learning begins in Section 02.</div>
+        </section>
+        <section class="lesson-step" data-step="2" hidden="" id="section-3">
+          <div class="section-top"><span class="overline">STEP 03 · TYPES &amp; VARIABLES</span><span
+              class="duration">14 MIN</span></div>
+          <h1 class="section-heading">Types, variables and object behavior</h1>
+          <p class="lede">You know what values and variables are. Now learn Dart’s actual types, its static type system,
+            and how values come with properties and methods.</p>
+          <div class="type-section-intro">
+            <div class="type-banner-label">DART’S TYPE SYSTEM</div><strong>One language. Strongly typed values. Useful
+              behavior.</strong>
+            <p>In Dart, the value <code>42</code> is an <code>int</code> object; <code>'Dart'</code> is a
+              <code>String</code> object. Types help the analyzer catch mistakes before your program runs.
+            </p>
+          </div>
+          <h2 class="session03-small-heading">Meet the core Dart types</h2>
+          <div class="type-gallery" role="list">
+            <article class="type-card" role="listitem"><span class="type-art">42</span><code>int</code><strong>Whole
+                numbers</strong><small>Counts, indexes, ages<br /><code>int lessons = 3;</code></small></article>
+            <article class="type-card" role="listitem"><span
+                class="type-art">3.14</span><code>double</code><strong>Decimal numbers</strong><small>Prices,
+                measurements<br /><code>double cost = 4.5;</code></small></article>
+            <article class="type-card" role="listitem"><span class="type-art">±</span><code>num</code><strong>Numeric
+                parent</strong><small>Can hold int or double<br /><code>num value = 5;</code></small></article>
+            <article class="type-card" role="listitem"><span
+                class="type-art">“A”</span><code>String</code><strong>Text</strong><small>Names and
+                messages<br /><code>String name = 'Aya';</code></small></article>
+            <article class="type-card" role="listitem"><span class="type-art">✓ / ✕</span><code>bool</code><strong>True
+                or false</strong><small>Decisions and flags<br /><code>bool ready = true;</code></small></article>
+            <article class="type-card" role="listitem"><span class="type-art">{
+                }</span><code>Object</code><strong>Common ancestor</strong><small>Non-null objects share
+                members<br /><code>Object item = 42;</code></small></article>
+          </div>
+          <div class="type-footnote"><strong>Two useful refinements:</strong> <code>int?</code> and <code>String?</code>
+            allow <code>null</code>, while <code>Object?</code> also admits it. <code>dynamic</code> bypasses useful
+            static checks—do not confuse it with <code>var</code>.</div>
+          <h2 class="session03-small-heading">Everything is an object</h2>
+          <div class="object-map">
+            <div class="object-root"><code>Object</code><small>Shared methods such as .toString() and
+                .runtimeType</small></div>
+            <div class="object-branches"><span><code>num</code> → <code>int</code> /
+                <code>double</code></span><span><code>String</code> → text methods</span><span><code>bool</code> → true
+                / false</span></div>
+          </div>
+          <div class="concept-card">
+            <h3>A small but important Dart mental model</h3>
+            <p><code>int</code>, <code>double</code> and <code>String</code> are object types, not primitive containers
+              detached from behavior. <code>num</code> is a common numeric parent; <code>.runtimeType</code> reveals a
+              value's runtime type. We explore how to design our own objects in the final Dart session.</p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>02 · Values have useful behavior</h3>
+            <p>Before running, predict the result of <code>5.isOdd</code> and <code>3.14.ceil()</code>.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Objects</span><button data-copy="objects"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  print(5.isOdd);             // true — property of an int object
+  print(3.14.ceil());        // 4 — method on a double object
+  print('dart'.toUpperCase()); // DART — method on a String
+  print(42.runtimeType);    // int — every value has a type
+  // TODO: Try 12.isEven and '  hello  '.trim().
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Change <code>5</code> to <code>12</code>; call
+              <code>isEven</code>. Try <code>.trim()</code> on a string.
+            </div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>true, 4, DART, int — and different results after your modifications.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Properties such as <code>isOdd</code> are read without parentheses. Methods such as <code>ceil()</code>
+                are called with parentheses.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="objects"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="objects" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="objects">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card type-inference-card">
+            <h3>Type inference: <code>var</code> still has a type</h3>
+            <p>Dart infers a variable’s <strong>static type</strong> from its initial value:
+              <code>var year = 2026;</code> becomes <code>int</code>; <code>var label = 'Dart';</code> becomes
+              <code>String</code>. Reassigning the same type is allowed; changing its type is not. By contrast,
+              <code>var something;</code> without an initializer is inferred as <code>dynamic</code> in this situation.
+            </p>
+          </div>
+          <div class="variable-choices">
+            <div><span>01 · EXPLICIT TYPE</span><code>int hours = 4;</code><small>The declared type is visible.</small>
+            </div>
+            <div><span>02 · TYPE INFERENCE</span><code>var hours = 4;</code><small>The type is inferred as int.</small>
+            </div>
+            <div><span>03 · FINAL</span><code>final startedAt = DateTime.now();</code><small>Assigned once at
+                runtime.</small></div>
+            <div><span>04 · CONST</span><code>const lessons = 3;</code><small>Known at compile time.</small></div>
+          </div>
+          <div class="concept-card">
+            <h3>Type inference with <code>var</code> — not dynamic typing</h3>
+            <p><strong>Type inference</strong> means Dart infers a variable's static type from its initializer.
+              <code>var trainee = 'Maya';</code> becomes a <code>String</code>: you can assign another string, but not
+              an integer. <code>var x;</code> without an initial value usually gives <code>dynamic</code>; avoid this in
+              beginner code. <code>final</code> is assigned once, while <code>const</code> is known at compile time.
+            </p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>03 · Typed values, var, final and const</h3>
+            <p>Trace the types, then change the mutable variable. Note that <code>var</code> does not mean “any type”.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Inference</span><button data-copy="inference"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  int hours = 4;
+  var trainee = 'Maya';        // inferred String
+  var fee = 12.5;            // inferred double
+  final course = 'Dart';     // assigned once
+  const sessionsPerWeek = 3; // known at compile time
+  print('$trainee: $hours hours of $course');
+  print(fee.runtimeType);
+  print(sessionsPerWeek);
+  hours = 5; // OK: mutable variable
+  // TODO: Try trainee = 'Lina'; and inspect its type.
+  // PREDICT, don't run: trainee = 123; // type error
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Change the trainee name; predict which deliberate wrong
+              assignment the analyzer rejects.</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>Dart knows the inferred type of <code>trainee</code> and <code>fee</code>. <code>hours</code> can be
+                reassigned.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p><code>final</code> prevents reassignment; <code>const</code> requires a compile-time constant.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="inference"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="inference" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="inference">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="session03-book-note"> We will define our own classes later in the OOP session.</div>
+        </section>
+        <section class="lesson-step" data-step="3" hidden="" id="section-4">
+          <div class="section-top"><span class="overline">STEP 04 · VALUES &amp; CONVERSION</span><span
+              class="duration">10 MIN</span></div>
+          <h1 class="section-heading">Expressions, conversions and small input</h1>
+          <p class="lede">Use familiar operators, produce readable messages, and convert text carefully. Input is
+            introduced briefly, but real keyboard reading is practiced locally.</p>
+          <div class="learning-grid">
+            <div class="learning-card"><span class="kicker">NUMBERS AND OUTPUT</span>
+              <h3>Arithmetic refresher</h3>
+              <p><code>+</code>, <code>-</code>, <code>*</code> and <code>%</code> work as expected. <code>/</code>
+                returns a <code>double</code>; <code>~/</code> performs integer division. Use <code>$name</code> or
+                <code>${expression}</code> in strings.
+              </p>
+            </div>
+            <div class="learning-card"><span class="kicker">SAFE CONVERSION</span>
+              <h3>A String is not automatically a number</h3>
+              <p><code>int.parse('12')</code> works for valid text, but throws for invalid text. Prefer
+                <code>int.tryParse(...)</code> or <code>double.tryParse(...)</code> for user-controlled input.
+              </p>
+            </div>
+          </div>
+          <div class="concept-card">
+            <h3>Useful conversion patterns</h3>
+            <div class="operator-table">
+              <div><code>int.tryParse('42')</code><span>String → <code>int?</code> (42 or null)</span></div>
+              <div><code>double.tryParse('8.5')</code><span>String → <code>double?</code></span></div>
+              <div><code>42.toString()</code><span>number → String</span></div>
+              <div><code>3.75.toInt()</code><span>double → int (truncates)</span></div>
+              <div><code>3.75.round()</code><span>double → nearest int</span></div>
+              <div><code>value ?? 0</code><span>use 0 when <code>value</code> is null</span></div>
+            </div>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>04 · Convert values safely</h3>
+            <p>DartPad cannot ask for terminal input. This example simulates a user entering text and demonstrates safe
+              conversion.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Conversion</span><button data-copy="conversion"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  final rawHours = '6';      // Pretend this came from a form.
+  final hours = int.tryParse(rawHours);
+  final invalid = int.tryParse('six');
+  final price = double.tryParse('12.50');
+  print('Hours: ${hours ?? 0}');
+  print('Invalid entry: ${invalid ?? 'not a number'}');
+  print('Cost: $price');
+  print('As text: ${42.toString()}');
+  print('Two decimals: ${12.5.toStringAsFixed(2)}');
+  // TODO: Replace rawHours with 'bad' and observe the safe result.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Try <code>rawHours = 'bad'</code> and replace the price
+              text with <code>'oops'</code>. Explain why the code does not crash.</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p><code>int.tryParse</code> returns <code>null</code> for invalid text. <code>??</code> provides a
+                fallback.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p><code>int?</code> means “an int or null.” <code>??</code> selects the right-hand value only if the
+                left-hand value is null.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="conversion"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="conversion" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="conversion">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card">
+            <h3>Real keyboard input: run locally, not inside DartPad</h3>
+            <p><code>stdin.readLineSync()</code> reads a line in a local Dart console application and returns
+              <code>String?</code>. It requires <code>import 'dart:io';</code>. The command
+              <code>dart run main.dart</code> works with your local Dart SDK. Flutter forms later collect input through
+              widgets, not <code>stdin</code>.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>Local console ONLY · input.dart</span></div>
+              <pre class="code-sample"><code>import 'dart:io';
+
+void main() {
+  stdout.write('Enter hours: ');
+  String? input = stdin.readLineSync();
+  int? hours = int.tryParse(input ?? '');
+  if (hours == null) {
+    print('Please enter a whole number.');
+  } else {
+    print('You entered $hours hours.');
+  }
+}</code></pre>
+            </div>
+            <p class="mini-copy">Try entering <code>5</code> and then <code>five</code>. We will use the same pattern in
+              your single-file homework.</p>
+          </div>
+        </section>
+        <section class="lesson-step" data-step="4" hidden="" id="section-5">
+          <div class="section-top"><span class="overline">STEP 05 · DART'S SOUND NULL SAFETY</span><span
+              class="duration">23 MIN</span></div>
+          <h1 class="section-heading">Null Safety: make missing values explicit</h1>
+          <p class="lede">You already know <code>null</code> from C# and JavaScript. Dart's important difference is that
+            <strong>non-nullable is the default</strong>: the analyzer makes you handle missing values before accessing
+            their members.
+          </p>
+          <div class="null-story">
+            <div aria-hidden="true" class="null-story-icon">?</div>
+            <div><span class="kicker">WHY THIS MATTERS · DART B, CHAPTER 2</span>
+              <h3>The missing-value bug we want to catch before the app runs</h3>
+              <p>A program reads a username, but the value is missing. Calling <code>.length</code> on <code>null</code>
+                would cause a runtime error. Dart prevents an unchecked member access on a nullable value <em>during
+                  analysis</em>, before you ship the Flutter app.</p>
+              <p class="null-small">This is not about forbidding <code>null</code>. It's about explicitly showing where
+                absence is possible and handling it.</p>
+            </div>
+          </div>
+          <div aria-label="Flow from a possibly absent value to a safe result" class="null-path">
+            <div class="null-path-node"><span>01 · MAY BE
+                MISSING</span><strong><code>String? name</code></strong><small>Nullable type</small></div>
+            <span class="null-path-arrow">→</span>
+            <div class="null-path-node"><span>02 · CHOOSE A SAFE
+                ROUTE</span><strong><code>if / ?. / ??</code></strong><small>Check, skip or default</small></div>
+            <span class="null-path-arrow">→</span>
+            <div class="null-path-node is-good"><span>03 · USE IT
+                SAFELY</span><strong><code>name.length</code></strong><small>Known non-null or handled</small></div>
+          </div>
+          <h2 class="session03-small-heading">1. The type decides whether null is allowed</h2>
+          <div class="null-type-comparison">
+            <article><span class="null-tag solid">NON-NULLABLE</span>
+              <h3><code>String name = 'Mira';</code></h3>
+              <p>Always a String. <code>name = null;</code> is an <strong>analyzer error</strong>.</p>
+            </article>
+            <article><span class="null-tag soft">NULLABLE</span>
+              <h3><code>String? name = null;</code></h3>
+              <p>Either a String or <code>null</code>. Before <code>name.length</code>, you must handle the
+                missing-value case.</p>
+            </article>
+          </div>
+          <div class="concept-card">
+            <h3>2. What does the analyzer reject, and what does it accept?</h3>
+            <p><strong>Unsafe:</strong> <code>String? name = null;</code> followed by <code>name.length</code> is
+              rejected. <strong>Safe:</strong> after <code>if (name != null)</code>, Dart's <em>flow analysis</em> knows
+              <code>name</code> is non-null inside the checked branch. A declared <code>String</code> cannot be assigned
+              a possibly null <code>String?</code> without handling it.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Null check + flow promotion</span><button
+                  data-copy="null_guard" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  String? name = 'Mira';
+  // print(name.length); // Analyzer error without a check
+  if (name != null) {
+    print(name.length);   // 4: promoted to String here
+  } else {
+    print('Name not supplied');
+  }
+}
+</code></pre>
+            </div>
+            <p class="null-small">A safe check is usually clearer than forcing an assertion. Note: a nullable variable
+              is different from an uninitialized non-nullable variable.</p>
+          </div>
+          <h2 class="session03-small-heading">3. Five operators: five distinct jobs</h2>
+          <div class="null-operator-grid">
+            <article class="null-operator-card"><span class="null-operator-token">?</span>
+              <h3>Nullable type</h3><code>String? label;</code>
+              <p>Allows the value to be a String <strong>or null</strong>. This <code>?</code> is a type marker, not the
+                ternary operator.</p>
+            </article>
+            <article class="null-operator-card"><span class="null-operator-token">?.</span>
+              <h3>Safe access</h3><code>label?.length</code>
+              <p>Accesses a member only when the receiver is non-null; otherwise the expression evaluates to
+                <code>null</code>.
+              </p>
+            </article>
+            <article class="null-operator-card"><span class="null-operator-token">??</span>
+              <h3>Fallback value</h3><code>label ?? 'Guest'</code>
+              <p>Returns the original value if present; otherwise returns the right-hand fallback. An empty string is
+                <em>not</em> null.
+              </p>
+            </article>
+            <article class="null-operator-card"><span class="null-operator-token">??=</span>
+              <h3>Assign if missing</h3><code>label ??= 'Guest';</code>
+              <p>Assigns the fallback only if the variable currently contains null. Unlike <code>??</code>, this changes
+                the variable.</p>
+            </article>
+            <article class="null-operator-card danger"><span class="null-operator-token">!</span>
+              <h3>Force non-null</h3><code>label!.length</code>
+              <p>Asserts the value is not null. If you're wrong, this <strong>throws at runtime</strong>. Prefer a check
+                or a fallback.</p>
+            </article>
+          </div>
+          <p class="null-source-note"><strong>Book vs extension:</strong> <code>?</code>, <code>?.</code>,
+            <code>??</code> and <code>!</code> are explained in Dart B, Chapter 2. <code>??=</code> is a small extra
+            from the <a href="https://dart.dev/language/operators" rel="noopener noreferrer" target="_blank">official
+              Dart operators reference</a>. The ternary <code>condition ? yes : no</code> is a separate syntax, reviewed
+            earlier.
+          </p>
+          <h2 class="session03-small-heading">4. Interactive simulation · follow the value</h2>
+          <div class="null-simulator" id="nullSimulator">
+            <div class="sim-header">
+              <div><span class="kicker">INTERACTIVE · PREDICT → REVEAL → EXPLAIN</span>
+                <h3>What happens when <code>name</code> is present or null?</h3>
+              </div><span class="sim-label">Browser simulation · Not a Dart interpreter</span>
+            </div>
+            <div class="sim-controls">
+              <div>
+                <p class="sim-control-title">Choose the starting value</p>
+                <div aria-label="Nullable value" class="sim-option-row" role="group"><button aria-pressed="true"
+                    class="sim-choice active" data-null-value="present" type="button">name = 'Mira'</button><button
+                    aria-pressed="false" class="sim-choice" data-null-value="missing" type="button">name = null</button>
+                </div>
+              </div>
+              <div>
+                <p class="sim-control-title">Choose the Dart operation</p>
+                <div aria-label="Nullable operation" class="sim-option-row" role="group"><button aria-pressed="true"
+                    class="sim-choice active" data-null-op="check" type="button">if != null</button><button
+                    aria-pressed="false" class="sim-choice" data-null-op="access" type="button">?.</button><button
+                    aria-pressed="false" class="sim-choice" data-null-op="fallback" type="button">??</button><button
+                    aria-pressed="false" class="sim-choice" data-null-op="assign" type="button">??=</button><button
+                    aria-pressed="false" class="sim-choice danger" data-null-op="assert" type="button">!</button></div>
+              </div>
+            </div>
+            <div class="sim-timeline">
+              <div><span>INPUT</span><code id="simBefore">String? name = 'Mira';</code></div>
+              <div><span>EXPRESSION</span><code id="simExpression">if (name != null) print(name.length);</code></div>
+              <div><span>RESULT / AFTER</span><code id="simAfter">4</code></div>
+            </div>
+            <div aria-live="polite" class="sim-verdict" id="simVerdict" role="status">Checked path: the analyzer knows
+              name is a String inside the if block.</div>
+            <p class="null-small">Try <strong>null + !</strong> last. The simulation shows the exception without
+              deliberately crashing the page.</p>
+          </div>
+          <h2 class="session03-small-heading">5. Apply it to the chapter's familiar input problem</h2>
+          <div class="learning-grid">
+            <div class="learning-card"><span class="kicker">A VALUE EXISTS</span>
+              <h3><code>int.tryParse('18')</code> → 18</h3>
+              <p>You can compute with it after checking the nullable result.</p>
+            </div>
+            <div class="learning-card"><span class="kicker">INPUT IS INVALID</span>
+              <h3><code>int.tryParse('eighteen')</code> → null</h3>
+              <p>Your program must choose a fallback or explain the error rather than performing arithmetic on a missing
+                value.</p>
+            </div>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>BOOK-BASED · PREDICT → RUN → MODIFY</span><span>Copy → DartPad</span></div>
+            <h3>13 · Null-aware operators together</h3>
+            <p>Predict each line with a real name, then after assigning null. Pay particular attention to the difference
+              between <code>??</code> and <code>??=</code>.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Null Safety · Runnable in DartPad</span><button
+                  data-copy="null_demo" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  String? trainee = 'Mira';
+  print(trainee?.toUpperCase()); // MIRA: only call if present
+  print(trainee ?? 'Guest');    // Mira: use a fallback if null
+
+  trainee = null;
+  print(trainee?.length);      // null: no crash
+  print(trainee ?? 'Guest');    // Guest
+
+  trainee ??= 'Anonymous';     // assign only when null
+  print(trainee);             // Anonymous
+
+  if (trainee != null) {
+    print(trainee.length);     // checked; safe to access
+  }
+  // trainee = null;
+  // print(trainee!.length);   // Dangerous: runtime exception
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Change the original name and comment out
+              <code>??=</code>. Predict the next printed value before running.
+            </div>
+            <div class="exercise-actions"><a class="ghost-button" href="https://dartpad.dev/" rel="noopener noreferrer"
+                target="_blank">Open DartPad to paste the example ↗</a></div>
+          </section>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · ERROR HANDLING</span><span>Copy → DartPad</span></div>
+            <h3>14 · Validate a potentially missing number</h3>
+            <p>This is the book's <code>tryParse</code> pattern connected to flow analysis. Use it whenever an input
+              might be absent or invalid.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · tryParse() + safe access</span><button data-copy="null_parse"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  final raw = '18';          // Imagine a user supplied this text.
+  final int? age = int.tryParse(raw);
+  if (age == null) {
+    print('Please enter a valid age.');
+    return;
+  }
+  // Flow analysis: inside this path age is a non-null int.
+  print('Next year you will be ${age + 1}.');
+
+  // TODO: Change raw to 'eighteen'. Explain the new output.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Change <code>'18'</code> to <code>'eighteen'</code>.
+              The invalid path should print the message and exit.</div>
+          </section>
+          <div class="session03-book-note"><a href="https://dart.dev/null-safety" rel="noopener noreferrer"
+              target="_blank">Official
+              Dart null safety</a>.</div>
+        </section>
+        <section class="lesson-step" data-step="5" hidden="" id="section-6">
+          <div class="section-top"><span class="overline">STEP 06 · COMPARISONS &amp; LOGIC</span><span
+              class="duration">09 MIN</span></div>
+          <h1 class="section-heading">Write conditions that evaluate to true or false</h1>
+          <p class="lede">Before making a decision, Dart needs a Boolean condition. You already know the logic — refresh
+            the symbols and the evaluation rules.</p>
+          <div class="concept-card">
+            <h3>Comparisons produce <code>bool</code></h3>
+            <div class="operator-table">
+              <div><code>==</code><span>equal value</span></div>
+              <div><code>!=</code><span>not equal</span></div>
+              <div><code>&gt;</code> / <code>&gt;=</code><span>greater than / at least</span></div>
+              <div><code>&lt;</code> / <code>&lt;=</code><span>less than / at most</span></div>
+            </div>
+            <p><strong>Watch the difference:</strong> <code>=</code> assigns, whereas <code>==</code> compares.</p>
+          </div>
+          <div class="concept-card">
+            <h3>Logical operators combine conditions</h3>
+            <div class="operator-table">
+              <div><code>&amp;&amp;</code><span>AND · both must be true</span></div>
+              <div><code>||</code><span>OR · at least one must be true</span></div>
+              <div><code>!</code><span>NOT · reverses true / false</span></div>
+            </div>
+            <p><strong>Short-circuiting:</strong> <code>&amp;&amp;</code> skips its right side if the left is false, and
+              <code>||</code> skips its right side if the left is true. This matters when a check could otherwise fail.
+            </p>
+          </div>
+          <div class="precedence-lesson">
+            <div class="precedence-heading"><span class="kicker">DART B · CHAPTER 3 + OFFICIAL DART OPERATORS</span>
+              <h3>Operator precedence · أولويات العمليات</h3>
+              <p>When an expression contains several operators, <strong>precedence</strong> determines which groups are
+                evaluated first. The levels below are ordered from higher priority to lower priority.</p>
+            </div>
+            <div aria-label="Operator precedence, high to low" class="precedence-ladder">
+              <div class="precedence-rung"><span class="rung-num">01</span><strong>Grouping /
+                  unary</strong><code>( )</code><code>!</code><small>Group explicitly; negate a Boolean</small></div>
+              <div class="precedence-rung"><span class="rung-num">02</span><strong>Multiply /
+                  divide</strong><code>* / ~/ %</code><small>Before addition and subtraction</small></div>
+              <div class="precedence-rung"><span class="rung-num">03</span><strong>Add /
+                  subtract</strong><code>+ -</code><small>Arithmetic result first</small></div>
+              <div class="precedence-rung"><span class="rung-num">04</span><strong>Relational
+                  comparison</strong><code>&gt; &gt;= &lt; &lt;=</code><small>Compare arithmetic values</small></div>
+              <div class="precedence-rung"><span
+                  class="rung-num">05</span><strong>Equality</strong><code>== !=</code><small>Test equality /
+                  inequality</small></div>
+              <div class="precedence-rung"><span class="rung-num">06</span><strong>Logical
+                  AND</strong><code>&amp;&amp;</code><small>Before logical OR</small></div>
+              <div class="precedence-rung"><span class="rung-num">07</span><strong>Logical
+                  OR</strong><code>||</code><small>Combines alternative conditions</small></div>
+            </div>
+            <p class="precedence-extra"><strong>Lower down the order:</strong> <code>??</code> (if-null),
+              <code>condition ? a : b</code> (ternary), and <code>=</code> (assignment). We use them in the conversion
+              and decision-making examples. Use parentheses for clarity.
+            </p>
+            <div class="precedence-example">
+              <div><span>WITHOUT PARENTHESES</span><code>3 + 2 * 4 &gt; 10 &amp;&amp; true</code><strong>Result:
+                  true</strong></div>
+              <div><span>WITH EXPLICIT GROUPING</span><code>((3 + (2 * 4)) &gt; 10) &amp;&amp; true</code><strong>Same
+                  result: true</strong></div>
+            </div>
+            <p class="precedence-tip"><strong>Best practice:</strong> Add parentheses when they help readers understand
+              your intention; don't make a teammate memorize the full precedence table. <a
+                href="https://dart.dev/language/operators" rel="noopener noreferrer" target="_blank">Official Dart
+                operator table ↗</a></p>
+            <details class="precedence-predict">
+              <summary>Quick prediction · what changes with parentheses?</summary>
+              <p>Compare <code>2 + 3 * 4</code> (14) with <code>(2 + 3) * 4</code> (20). The parentheses override the
+                ordinary arithmetic order.</p>
+            </details>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>05 · Eligibility logic</h3>
+            <p>Check an age, score and ID flag. Predict the outputs, then change one input.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Logic</span><button data-copy="logic" type="button">Copy
+                  code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var age = 19;
+  var score = 82;
+  var hasID = true;
+  print(score &gt;= 80);              // true
+  print(score == 80);              // false (comparison)
+  print(age &gt;= 18 &amp;&amp; hasID);       // both must be true
+  print(score &lt; 60 || !hasID);     // either condition
+  print(!(age &lt; 18));             // logical NOT
+  // TODO: Make hasID false. Predict and then run.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Set <code>hasID = false</code>, then try
+              <code>score = 55</code>. Explain the changed conditions.
+            </div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>All logical expressions evaluate to <code>true</code> or <code>false</code>.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>For <code>&amp;&amp;</code> both sides must be true; <code>||</code> needs only one true side.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="logic"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="logic" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="logic">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="check-card"><span class="kicker">PREDICT BEFORE CODING</span>
+            <p><strong>If <code>score = 60</code>, is <code>score &gt; 60 || score == 60</code> true?</strong></p>
+            <div class="answer-buttons"><button data-correct="true" type="button">Yes</button><button
+                data-correct="false" type="button">No</button></div>
+            <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail" hidden="">The
+              first comparison is false, but the second is true. OR therefore returns true.</span>
+          </div>
+          <div class="session03-book-note"><strong> The precedence sequence above follows the <a
+                href="https://dart.dev/language/operators" rel="noopener noreferrer" target="_blank">official Dart
+                operator table</a>.</div>
+        </section>
+        <section class="lesson-step" data-step="6" hidden="" id="section-7">
+          <div class="section-top"><span class="overline">STEP 07 · DECISION MAKING</span><span class="duration">13
+              MIN</span></div>
+          <h1 class="section-heading">if, else if, switch and conditional expressions</h1>
+          <p class="lede">Choose one path, not every path. Work from a simple two-way condition to multiple branches and
+            Dart 3 expressions.</p>
+          <div class="concept-flow">
+            <div><b>Condition</b><small><code>score &gt;= 60</code></small></div><span>→</span>
+            <div><b>True branch</b><small>Pass</small></div><span>or</span>
+            <div><b>False branch</b><small>Retry</small></div>
+          </div>
+          <div class="concept-card">
+            <h3><code>if</code>, <code>else if</code>, and <code>else</code></h3>
+            <p><code>if</code> runs when its condition is true; <code>else</code> runs as the fallback. An
+              <code>else if</code> chain tries conditions from top to bottom and executes the <strong>first</strong>
+              match. Check invalid scores before grading. A plain <code>if</code> without an <code>else</code> is valid.
+            </p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>06 · Multi-branch grade classifier</h3>
+            <p>Start with <code>84</code> and trace which branch prints. Then test score boundaries and invalid values.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Ifelse</span><button data-copy="ifelse"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var score = 84;
+  if (score &lt; 0 || score &gt; 100) {
+    print('Invalid score');
+  } else if (score &gt;= 90) {
+    print('Excellent!');
+  } else if (score &gt;= 80) {
+    print('Good job!');
+  } else if (score &gt;= 60) {
+    print('Passed');
+  } else {
+    print('You need to work harder');
+  }
+  // TODO: Test 91, 55 and 105. Order matters!
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Test 90, 80, 60, 59, -1 and 101. What happens if you
+              place <code>score &gt;= 60</code> first?</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>84 prints “Good job!”; 101 prints “Invalid score”.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Conditions are checked in order. An earlier true condition prevents later branches from running.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="ifelse"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="ifelse" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="ifelse">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card">
+            <h3><code>switch</code> statement — choose a command</h3>
+            <p><code>switch</code> is convenient when one value is compared with fixed alternatives such as
+              <code>open</code>, <code>save</code> and <code>close</code>. In <strong>Dart 3</strong>, non-empty cases
+              finish automatically: <strong>you do not need <code>break</code> after each case</strong>. The book's
+              older break-based example reflects an earlier form; use current syntax in DartPad.
+            </p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>07 · Switch statement</h3>
+            <p>Choose a menu action and run a different branch for each supported value.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Switches</span><button data-copy="switches"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var action = 'save';
+  switch (action) {
+    case 'open':
+      print('Opening');
+    case 'save':
+      print('Saving');
+    case 'close':
+      print('Closing');
+    default:
+      print('Unknown action');
+  }
+  // Modern Dart 3: non-empty cases do not need break.
+  // TODO: Test action = 'close', then 'share'.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Set <code>action</code> to <code>'close'</code> and
+              then <code>'share'</code>. Which branch catches an unrecognized action?</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>“Saving” with the initial value; “Unknown action” for share.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p><code>default</code> covers unmatched values.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="switches"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="switches" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="switches">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card">
+            <h3>Two expressions that return values</h3>
+            <p><strong>Ternary:</strong> <code>condition ? valueIfTrue : valueIfFalse</code> is a short two-way choice.
+              <strong>Switch expression (Dart 3):</strong>
+              <code>var label = switch (value) { pattern =&gt; result, _ =&gt; fallback };</code> produces a value.
+              Unlike the switch <em>statement</em>, it uses <code>=&gt;</code>, commas and the wildcard <code>_</code>.
+            </p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>08 · Switch expression + ternary</h3>
+            <p>Compare a value-returning switch expression with a two-way ternary.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Switch Expr</span><button data-copy="switch_expr"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var role = 'teacher';
+  var permission = switch (role) {
+    'student' =&gt; 'View lessons',
+    'teacher' =&gt; 'Edit lessons',
+    'admin' =&gt; 'Manage users',
+    _ =&gt; 'No access',
+  };
+  print(permission);
+
+  var score = 76;
+  var result = score &gt;= 60 ? 'Pass' : 'Retry';
+  print(result);
+  // TODO: Set role to 'visitor' and score to 48.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Try role <code>'visitor'</code>; then make the score
+              48. Keep the fallback case.</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>The switch expression returns a permission String, the ternary returns Pass or Retry.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Use ternary for two options, switch expression when a single value has several known alternatives.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="switch_expr"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="switch_expr" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open
+                in DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="switch_expr">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="session03-book-note"> <a href="https://dart.dev/language/branches" rel="noopener noreferrer"
+              target="_blank">Current Dart branches
+              documentation</a> for Dart 3 switch syntax.</div>
+        </section>
+        <section class="lesson-step" data-step="7" hidden="" id="section-8">
+          <div class="section-top"><span class="overline">STEP 08 · LOOPS &amp; FLOW CONTROL</span><span
+              class="duration">13 MIN</span></div>
+          <h1 class="section-heading">for, while, do-while, break and continue</h1>
+          <p class="lede">Loops repeat a block. The key skill is to trace the start, stop, update, and what happens when
+            the stop condition is reached.</p>
+          <div class="learning-grid">
+            <div class="learning-card"><span class="kicker">KNOWN REPETITIONS</span>
+              <h3><code>for</code></h3>
+              <p>Use a counter when the number of iterations is known. Read its three parts: initialization; Boolean
+                condition; update.</p>
+            </div>
+            <div class="learning-card"><span class="kicker">CONDITION-DRIVEN REPETITION</span>
+              <h3><code>while</code> and <code>do-while</code></h3>
+              <p><code>while</code> checks first, so it may run zero times. <code>do-while</code> checks after the body,
+                so it runs at least once.</p>
+            </div>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>09 · Count and accumulate with for</h3>
+            <p>Predict the running total at each iteration, then run the code.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Loop For</span><button data-copy="loop_for"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var total = 0;
+  for (var day = 1; day &lt;= 5; day++) {
+    total += day;
+    print('Day $day: running total = $total');
+  }
+  // TODO: Change the upper limit to 7.
+  // TODO: Count backwards from 5 to 1.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Repeat 7 times and predict the final sum. Then change
+              the loop to count down.</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>For days 1–5 the final running total is 15.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>The counter starts once; the condition is tested each cycle; the update happens after the body.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="loop_for"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="loop_for" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="loop_for">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>10 · while vs do-while</h3>
+            <p>Run both loops, then set the initial counter to the stopping value.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Loop While</span><button data-copy="loop_while"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  var attempts = 0;
+  while (attempts &lt; 3) {
+    attempts++;
+    print('Attempt $attempts');
+  }
+
+  var ticket = 0;
+  do {
+    print('Ticket $ticket is checked at least once');
+    ticket++;
+  } while (ticket &lt; 2);
+  // TODO: Try attempts = 3 and compare both loops.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Set <code>attempts = 3</code> and
+              <code>ticket = 2</code>. Which loop still prints once?
+            </div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>The <code>do-while</code> body runs at least once even when its condition starts false.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Think about when each loop checks the condition.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="loop_while"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="loop_while" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="loop_while">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card">
+            <h3><code>break</code> and <code>continue</code></h3>
+            <p><code>break</code> exits a loop completely. <code>continue</code> skips the rest of the current iteration
+              and moves to the next. These keywords make input validation, filtering and search tasks easier.</p>
+          </div>
+          <section class="practice-card">
+            <div class="activity-tags"><span>GUIDED · PREDICT → RUN → MODIFY</span><span>Real Dart · Editable</span>
+            </div>
+            <h3>11 · Vowels, break and continue</h3>
+            <p>This example uses a string instead of a list; collections belong to our next session.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Loop Control</span><button data-copy="loop_control"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  final word = 'Education';
+  var vowels = 0;
+  for (var i = 0; i &lt; word.length; i++) {
+    final letter = word[i].toLowerCase();
+    if (!'aeiou'.contains(letter)) continue;
+    vowels++;
+  }
+  print('Vowels: $vowels'); // 5
+
+  for (var number = 1; number &lt;= 10; number++) {
+    if (number == 6) break;
+    print(number); // 1, 2, 3, 4, 5
+  }
+  // TODO: Use 'Flutter' instead of 'Education'.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Change the word to <code>'Flutter'</code>; find and
+              explain the new vowel count.</div>
+            <div class="expected"><strong>Expected observation</strong>
+              <p>The first loop counts vowels; the second stops before printing 6.</p>
+            </div>
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>A String has <code>length</code>, indexed character access and methods like <code>toLowerCase()</code>.
+              </p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="loop_control"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="loop_control" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open
+                in DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="loop_control">
+              <p class="embed-status">Loads on click only. If the Gist has not been connected, copy the source above and
+                paste it into DartPad or a local Dart file.</p>
+            </div>
+          </section>
+          <div class="concept-card">
+            <h3>Real-input loop pattern (local SDK)</h3>
+            <p>For the homework from Dart B, you will reuse <code>stdin.readLineSync()</code> inside a
+              <code>while</code> loop until the user chooses to stop. DartPad examples intentionally use fixed values so
+              students can still practice in a browser.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>Local CLI pattern · not for DartPad</span></div>
+              <pre class="code-sample"><code>import 'dart:io';
+void main() {
+  while (true) {
+    stdout.write('Score (blank to quit): ');
+    final raw = stdin.readLineSync();
+    if (raw == null || raw.trim().isEmpty) break;
+    final score = int.tryParse(raw);
+    if (score == null) {
+      print('Enter a number.');
+      continue;
+    }
+    print('Valid integer entered: $score');
+  }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="lesson-step" data-step="8" hidden="" id="section-9">
+          <div class="section-top"><span class="overline">STEP 09 · CHAPTER APPLICATIONS</span><span class="duration">18
+              MIN</span></div>
+          <h1 class="section-heading">Applications: calculator and guessing game</h1>
+          <p class="lede">Two programs from <em>Dart B</em> connect everything you practiced: <code>main()</code>,
+            numeric conversion, null checks, decisions, and loops. The original applications use terminal input; the
+            browser alternatives let you test the same ideas without <code>dart:io</code>.</p>
+          <div class="app-compare-line"><span>01 · Read a value</span><b>→</b><span>02 · Parse &amp;
+              validate</span><b>→</b><span>03 · Decide</span><b>→</b><span>04 · Repeat or print</span></div>
+          <div class="app-device-note"><strong>Where can these programs run?</strong>
+            <div class="app-run-grid">
+              <div><span class="app-label">LOCAL TERMINAL</span>
+                <p>Run the original-style code with <code>dart run main.dart</code>. <code>stdin.readLineSync()</code>
+                  reads real keyboard input.</p>
+              </div>
+              <div><span class="app-label">DARTPAD</span>
+                <p>Copy the DartPad-compatible version. It uses editable, scripted input strings; real Dart code still
+                  performs every calculation or decision.</p>
+              </div>
+              <div><span class="app-label">THIS WEBSITE</span>
+                <p>Try the interactive browser simulation. Its interface runs in JavaScript, not Dart; it demonstrates
+                  the same control flow step by step.</p>
+              </div>
+            </div>
+          </div>
+          <div class="application-heading"><span class="app-order">APP 01</span>
+            <div>
+              <h2>Command-line Calculator</h2>
+              <p>Chapter 2 · input → safe parsing → arithmetic → division-by-zero check.</p>
+            </div>
+          </div>
+          <div class="app-simulator" id="calcSimulator">
+            <div class="sim-header">
+              <div><span class="kicker">LIVE BROWSER SIMULATION</span>
+                <h3>Enter two values and inspect the decision</h3>
+              </div><span class="sim-label">JavaScript UI · Same Dart logic</span>
+            </div>
+            <div class="calc-inputs"><label>First number<input id="calcA" inputmode="decimal" placeholder="e.g. 12.5"
+                  type="text" value="12.5" /></label><label>Second number<input id="calcB" inputmode="decimal"
+                  placeholder="e.g. 2.5" type="text" value="2.5" /></label><button class="primary-button" id="calcRun"
+                type="button">Calculate</button></div>
+            <div aria-live="polite" class="sim-verdict" id="calcResult" role="status">Sum: 15 · Difference: 10 ·
+              Product: 31.25 · Quotient: 5</div>
+            <p class="null-small">Test <code>0</code> and <code>hello</code> as the second input. Compare the outputs
+              with the code below.</p>
+          </div>
+          <div class="code-tabs-description"><span>LOCAL CODE · REAL KEYBOARD INPUT</span>
+            <p>Runs in VS Code Terminal with a locally installed Dart SDK.</p>
+          </div>
+          <div class="inline-code-box">
+            <div class="code-header"><span>calculator.dart · Dart CLI with dart:io</span><button
+                data-copy="calculator_cli" type="button">Copy code</button></div>
+            <pre class="code-sample"><code>import 'dart:io';
+
+void main() {
+  stdout.write('First number: ');
+  final rawA = stdin.readLineSync();
+  stdout.write('Second number: ');
+  final rawB = stdin.readLineSync();
+  final a = double.tryParse(rawA ?? '');
+  final b = double.tryParse(rawB ?? '');
+  if (a == null || b == null) {
+    print('Invalid input. Enter valid numbers.');
+    return;
+  }
+  print('Sum: ${a + b}');
+  print('Difference: ${a - b}');
+  print('Product: ${a * b}');
+  print(b == 0 ? 'Cannot divide by zero' : 'Quotient: ${a / b}');
+}
+</code></pre>
+          </div>
+          <details class="code-alternative" open="">
+            <summary><strong>DartPad alternative</strong> — runnable without terminal input</summary>
+            <p>These two strings act as the user's input. Change them, then paste into DartPad. The parsing and
+              arithmetic are real Dart.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Calculator · DartPad-ready</span><button
+                  data-copy="calculator_pad" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  // DartPad has no terminal stdin. Edit these two strings.
+  final rawA = '12.5';
+  final rawB = '2.5';
+  final a = double.tryParse(rawA);
+  final b = double.tryParse(rawB);
+  if (a == null || b == null) {
+    print('Invalid input. Enter valid numbers.');
+    return;
+  }
+  print('Sum: ${a + b}');
+  print('Difference: ${a - b}');
+  print('Product: ${a * b}');
+  print(b == 0 ? 'Cannot divide by zero' : 'Quotient: ${a / b}');
+  // TODO: Change rawB to '0', then to 'oops'.
+}
+</code></pre>
+            </div>
+            <a class="ghost-button" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open DartPad
+              ↗</a>
+          </details>
+          <div class="application-heading"><span class="app-order">APP 02</span>
+            <div>
+              <h2>Number Guessing Game</h2>
+              <p>Chapter 3 · input validation → <code>continue</code> → hints → <code>break</code>.</p>
+            </div>
+          </div>
+          <div class="app-simulator" id="guessSimulator">
+            <div class="sim-header">
+              <div><span class="kicker">LIVE BROWSER SIMULATION</span>
+                <h3>Guess a number from 1–100</h3>
+              </div><span class="sim-label">JavaScript UI · Same Dart rules</span>
+            </div>
+            <div class="guess-controls"><label>Your guess<input id="guessInput" inputmode="numeric" placeholder="1–100"
+                  type="text" /></label><button class="primary-button" id="guessRun" type="button">Submit
+                guess</button><button class="ghost-button" id="guessReset" type="button">New game</button></div>
+            <div aria-live="polite" class="sim-verdict" id="guessResult" role="status">A secret number is ready. Invalid
+              entries do not count as attempts.</div>
+            <div aria-label="Guess history" class="guess-history" id="guessHistory"></div>
+            <p class="null-small">This browser simulator hides a random target just like the book's
+              <code>Random().nextInt(100) + 1</code>. The DartPad version uses a fixed target for predictable classroom
+              tracing.
+            </p>
+          </div>
+          <div class="code-tabs-description"><span>LOCAL CODE · RANDOM TARGET + REAL KEYBOARD INPUT</span>
+            <p>Read guesses from the terminal and keep asking until the player succeeds.</p>
+          </div>
+          <div class="inline-code-box">
+            <div class="code-header"><span>guessing_game.dart · Dart CLI with dart:io and dart:math</span><button
+                data-copy="guessing_cli" type="button">Copy code</button></div>
+            <pre class="code-sample"><code>import 'dart:io';
+import 'dart:math';
+
+void main() {
+  final target = Random().nextInt(100) + 1;
+  var attempts = 0;
+  print('Guess the number (1 to 100).');
+  while (true) {
+    stdout.write('Your guess: ');
+    final raw = stdin.readLineSync();
+    if (raw == null) break; // Input stream closed.
+    final guess = int.tryParse(raw);
+    if (guess == null) {
+      print('Please enter a whole number.');
+      continue; // Invalid input does not count.
+    }
+    attempts++;
+    if (guess &lt; target) {
+      print('Too low!');
+    } else if (guess &gt; target) {
+      print('Too high!');
+    } else {
+      print('Correct in $attempts attempts!');
+      break;
+    }
+  }
+}
+</code></pre>
+          </div>
+          <details class="code-alternative" open="">
+            <summary><strong>DartPad alternative</strong> — run a scripted set of guesses</summary>
+            <p>The predefined guesses include a non-numeric string to demonstrate <code>tryParse</code> and
+              <code>continue</code>. This example previews List syntax, which you'll explore next session.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Guessing Game · DartPad-ready</span><button
+                  data-copy="guessing_pad" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  // Scripted guesses replace terminal input in DartPad.
+  const target = 50;             // Change this first.
+  final guesses = ['oops', '20', '70', '50'];
+  var attempts = 0;
+  for (var i = 0; i &lt; guesses.length; i++) {
+    final guess = int.tryParse(guesses[i]);
+    if (guess == null) {
+      print('Invalid entry: ${guesses[i]}');
+      continue;
+    }
+    attempts++;
+    if (guess &lt; target) {
+      print('$guess: Too low!');
+    } else if (guess &gt; target) {
+      print('$guess: Too high!');
+    } else {
+      print('$guess: Correct in $attempts valid attempts!');
+      break;
+    }
+  }
+  // TODO: Change the guesses and predict each hint.
+}
+</code></pre>
+            </div>
+            <a class="ghost-button" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open DartPad
+              ↗</a>
+          </details>
+          <div class="app-reflection"><span class="kicker">COMPARE THE TWO APPLICATIONS</span>
+            <p><strong>The calculator</strong> handles invalid input by printing an error and exiting. <strong>The
+                guessing game</strong> stays active with a loop and allows another attempt. That's the practical reason
+              Chapter 3 adds control flow after Chapter 2.</p>
+          </div>
+          <div class="session03-book-note"><strong>Sources:</strong> <em>Flutter and Dart Fundamentals </em> Chapter 2,
+            Listing 2-8 (Command
+            Line Calculator), and Chapter 3, Listing 3-12 (Number Guessing Game). Browser simulations and DartPad
+            variants are teaching adaptations, not the book's original source listings.</div>
+        </section>
+        <section class="lesson-step" data-step="9" hidden="" id="section-10">
+          <div class="section-top"><span class="overline">STEP 10 · BOOK PRACTICE &amp; HOMEWORK</span><span
+              class="duration">06 MIN</span></div>
+          <h1 class="section-heading">Homework from Dart B · Try It Yourself</h1>
+          <p class="lede">Chapter 2 and Chapter 3 finish with six Try It Yourself challenges. The downloadable PDF
+            preserves their exercise wording; the classroom selection below keeps the work manageable.</p>
+          <div class="exercise-actions" aria-label="Homework PDF download"><a class="primary-button"
+              href="assignment/Homework.pdf" download="Homework.pdf"
+              aria-label="Download Dart B Chapters 2 and 3 Try It Yourself homework as a PDF">↓ Download Homework PDF ·
+              Chapters 2–3</a></div>
+          <div class="practice-card"><span class="kicker">BOOK-BASED GUIDED CHECK</span>
+            <h3>12 · Grade checking before homework</h3>
+            <p>Based on Dart B, Chapter 3 “Try It Yourself.” Simulate a score with text, convert it with
+              <code>int.tryParse()</code>, then choose the correct message.
+            </p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · Dart · Grade Demo</span><button data-copy="grade_demo"
+                  type="button">Copy code</button></div>
+              <pre class="code-sample"><code>void main() {
+  // DartPad has no stdin. Test preset inputs here.
+  final rawScore = '82';
+  final score = int.tryParse(rawScore);
+  if (score == null || score &lt; 0 || score &gt; 100) {
+    print('Invalid score');
+  } else if (score &gt;= 90) {
+    print('Excellent!');
+  } else if (score &gt;= 80) {
+    print('Good job!');
+  } else if (score &gt;= 70) {
+    print('Fair effort');
+  } else if (score &gt;= 60) {
+    print('You passed');
+  } else {
+    print('You need to work harder');
+  }
+  // TODO: Test 'hello', '103', '59', and '95'.
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try it:</strong> Test the text values <code>'hello'</code>,
+              <code>'103'</code>, <code>'59'</code> and <code>'95'</code>. Explain the difference between an invalid
+              number and an out-of-range score.
+            </div>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="grade_demo"
+                type="button">▶ Load DartPad editor</button><a class="ghost-button external-dartpad"
+                data-activity="grade_demo" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open in
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="grade_demo">
+              <p class="embed-status">Editor loads only on click; copy source if the Gist has not been connected.</p>
+            </div>
+          </div>
+          <div class="assignment-card"><span class="kicker">FROM DART B · TRY IT YOURSELF · GOOGLE CLASSROOM</span>
+            <h3>Chapters 2–3 · Try It Yourself (original exercises)</h3>
+            <p>The assignment PDF includes all six book exercises, with the original wording and chapter references.
+              Read the exact task instructions before coding.</p>
+            <ol class="steps-list">
+              <li><strong>Core · Chapter 2:</strong> Temperature Converter and Null Safety Practice.</li>
+              <li><strong>Core · Chapter 3:</strong> Grade Calculator and Vowel Counter.</li>
+              <li><strong>Extensions:</strong> Enhanced Calculator (Chapter 2) and Enhanced Guessing Game (Chapter 3).
+              </li>
+            </ol>
+            <a class="ghost-button" download="" href="assignment/StudentName.dart">Download one-file starter · .dart</a>
+            <p><strong>Submission:</strong> Work independently and submit one <code>StudentName.dart</code> source file
+              in Google Classroom. Use one <code>main()</code>, clearly labeled sections, and read keyboard input using
+              <code>dart:io</code>. The starter helps structure the four core challenges; the full book text is in the
+              PDF.
+            </p>
+            <p><strong>Important:</strong> These exercises require local terminal input. DartPad can run the fixed-input
+              adaptations in Applications but not <code>stdin.readLineSync()</code>.</p>
+          </div>
+          <form class="quiz-form" id="exitQuiz">
+            <fieldset class="quiz-item">
+              <legend>1. Which Dart expression safely converts user text to an integer?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="true" name="exitQuiz0"
+                    type="radio" value="0" /><span><code>int.tryParse(input ?? '')</code></span></label><label
+                  class="quiz-choice"><input data-right="false" name="exitQuiz0" type="radio"
+                    value="1" /><span><code>input as int</code></span></label><label class="quiz-choice"><input
+                    data-right="false" name="exitQuiz0" type="radio"
+                    value="2" /><span><code>input + 1</code></span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">tryParse returns a nullable integer rather than throwing on invalid text.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>2. What is the important difference between <code>while</code> and <code>do-while</code>?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="false" name="exitQuiz1"
+                    type="radio" value="0" /><span>There is no difference</span></label><label
+                  class="quiz-choice"><input data-right="true" name="exitQuiz1" type="radio" value="1" /><span>do-while
+                    runs at least once</span></label><label class="quiz-choice"><input data-right="false"
+                    name="exitQuiz1" type="radio" value="2" /><span>while always runs exactly twice</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail"
+                hidden="">do-while tests after its body; while tests before.</span>
+            </fieldset>
+            <fieldset class="quiz-item">
+              <legend>3. Which modern Dart 3 feature returns a value from multiple matching cases?</legend>
+              <div class="quiz-options"><label class="quiz-choice"><input data-right="true" name="exitQuiz2"
+                    type="radio" value="0" /><span>switch expression</span></label><label class="quiz-choice"><input
+                    data-right="false" name="exitQuiz2" type="radio" value="1" /><span>for loop</span></label><label
+                  class="quiz-choice"><input data-right="false" name="exitQuiz2" type="radio" value="2" /><span>break
+                    statement</span></label></div>
+              <p aria-live="polite" class="quiz-feedback">Choose one option.</p><span class="answer-detail" hidden="">A
+                switch expression assigns or returns a value using =&gt; for each case.</span>
+            </fieldset>
+          </form>
+          <div class="practice-card"><span class="kicker">NEXT TWO DART SESSIONS · DART B PATH</span>
+            <h3>Where these foundations lead</h3>
+            <div class="learning-grid">
+              <div class="learning-card"><strong>Session 04 — Collections, cascades &amp; functions</strong>
+                <p><code>List</code>, <code>Set</code>, <code>Map</code>; collection operations and the cascade operator
+                  <code>..</code>; functions, return values, positional, optional and named parameters. Primary book:
+                  Chapter 4 and Chapter 5; cascade syntax supplemented by Dart language reference.
+                </p>
+              </div>
+              <div class="learning-card"><strong>Session 05 — Classes and OOP</strong>
+                <p>Classes, objects, fields, constructors, getters/setters, inheritance and interfaces/implements.
+                  Primary book: Chapters 6–7. We will introduce the essentials with small examples, not advanced design
+                  patterns.</p>
+              </div>
+            </div>
+            <p><strong>Session 06:</strong> Reading official Dart documentation and exploring API pages independently.
+            </p>
+          </div>
+          <div class="completion-message" hidden="" id="completionMessage">
+            <div aria-hidden="true" class="confetti">✦ ✳︎ ✦ ✳︎ ✦</div>
+            <h3>Session 03 complete!</h3>
+            <p>You refreshed Dart types, expressions, decisions and loops; practiced sound null safety; and applied it
+              in a calculator and a guessing game.</p>
+          </div>
+        </section>
+        <footer aria-label="Lesson navigation" class="footer-controls">
+          <div class="footer-left">
+            <span id="footerStep">Section 1 of 10</span>
+            <span class="footer-subtitle">120-minute guided lab</span>
+          </div>
+          <div class="footer-actions">
+            <button class="footer-btn ghost" id="previousButton" type="button">← Previous</button>
+            <button class="footer-btn secondary" id="markButton" type="button">✓ Mark completed</button>
+            <button class="footer-btn primary" id="nextButton" type="button">Next →</button>
+          </div>
+        </footer>
+      </main>
+      <footer class="small-note" style="padding:20px 40px;text-align:center;border-top:1px solid var(--line)">SICT235 ·
+        PDB2 · 2026–2027 · Training-first, not grades-first</footer>
+    </div>
+  </div>
+</body>
+
+</html>
