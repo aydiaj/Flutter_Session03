@@ -3962,7 +3962,7 @@ body[data-theme="dark"] .quiz-feedback.retry {
 @media (max-width: 690px) {
   .footer-controls {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .footer-left {
